@@ -1,9 +1,9 @@
 package cl.casero;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class CustomerItem extends ActionBarActivity {
+public class CustomerItem extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

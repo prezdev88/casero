@@ -1,6 +1,6 @@
 package cl.casero;
 
-import android.support.v7.app.ActionBarActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -23,7 +23,7 @@ import cl.casero.service.StatisticsService;
 import cl.casero.service.impl.StatisticsServiceImpl;
 
 // https://github.com/PhilJay/MPAndroidChart
-public class ChartActivity extends ActionBarActivity {
+public class ChartActivity extends AppCompatActivity {
 
     private BarChart barChart;
     private Spinner startMonthSpinner;

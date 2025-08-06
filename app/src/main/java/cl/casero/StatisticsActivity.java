@@ -3,7 +3,7 @@ package cl.casero;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
@@ -22,7 +22,7 @@ import cl.casero.model.Resource;
 import cl.casero.service.StatisticsService;
 import cl.casero.service.impl.StatisticsServiceImpl;
 
-public class StatisticsActivity extends ActionBarActivity {
+public class StatisticsActivity extends AppCompatActivity {
 
     private Spinner yearSpinner;
     private Spinner monthSpinner;

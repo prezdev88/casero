@@ -1,9 +1,9 @@
 package cl.casero;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class TransactionItem extends ActionBarActivity {
+public class TransactionItem extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

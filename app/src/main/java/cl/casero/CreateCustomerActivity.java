@@ -1,7 +1,7 @@
 package cl.casero;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.widget.*;
 
 import cl.casero.listener.create.customer.CreateCustomerBackButtonOnClickListener;
@@ -10,7 +10,7 @@ import cl.casero.model.Resource;
 import cl.casero.service.StatisticsService;
 import cl.casero.service.impl.StatisticsServiceImpl;
 
-public class CreateCustomerActivity extends ActionBarActivity {
+public class CreateCustomerActivity extends AppCompatActivity {
 
     private Button backButton;
     private Button createButton;

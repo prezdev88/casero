@@ -6,7 +6,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.InputType;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -30,7 +30,7 @@ import cl.casero.service.TransactionService;
 import cl.casero.service.impl.CustomerServiceImpl;
 import cl.casero.service.impl.TransactionServiceImpl;
 
-public class SaleActivity extends ActionBarActivity {
+public class SaleActivity extends AppCompatActivity {
 
     private TextView saleCustomerNameTextView;
     private TextView saleDateTextView;

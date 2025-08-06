@@ -2,7 +2,7 @@ package cl.casero;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.*;
 
@@ -19,7 +19,7 @@ import cl.casero.service.TransactionService;
 import cl.casero.service.impl.CustomerServiceImpl;
 import cl.casero.service.impl.TransactionServiceImpl;
 
-public class CustomerViewActivity extends ActionBarActivity {
+public class CustomerViewActivity extends AppCompatActivity {
 
     private TextView nameTextView;
     private TextView debtTextView;
