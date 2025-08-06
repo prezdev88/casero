@@ -4,8 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import cl.casero.MainActivity;
-
 public class SQLiteOpenHelperImpl extends SQLiteOpenHelper {
 
     private static final String CUSTOMER_TABLE =

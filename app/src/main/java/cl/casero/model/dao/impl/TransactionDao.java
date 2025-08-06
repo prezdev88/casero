@@ -5,11 +5,8 @@ import java.util.Collections;
 import java.util.List;
 
 import cl.casero.model.SQLiteOpenHelperImpl;
-import cl.casero.model.Statistic;
 import cl.casero.model.Transaction;
 import cl.casero.model.dao.AbstractDao;
-import cl.casero.model.enums.SaleType;
-import cl.casero.model.enums.TransactionType;
 
 public class TransactionDao extends AbstractDao<Transaction> {
 
