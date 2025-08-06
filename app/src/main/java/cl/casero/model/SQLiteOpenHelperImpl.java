@@ -1,5 +1,6 @@
 package cl.casero.model;
 
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -55,14 +56,17 @@ public class SQLiteOpenHelperImpl extends SQLiteOpenHelper {
                     // -1 cuando es abono
                     ")";
 
-    public SQLiteOpenHelperImpl() {
+    private static final String DATABASE_NAME = "casero.sqlite"; // O Database.NAME
+    private static final int DATABASE_VERSION = 2;
+
+    public SQLiteOpenHelperImpl(Context context) {
         super(
-                MainActivity.getInstance().getApplicationContext(),
-                Database.PATH, null,
-                Database.VERSION
+                context.getApplicationContext(), // Usa el contexto que te pasan
+                DATABASE_NAME,                   // Solo el nombre del archivo
+                null,
+                DATABASE_VERSION
         );
     }
-
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(CUSTOMER_TABLE);

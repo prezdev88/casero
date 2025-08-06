@@ -14,7 +14,7 @@ public class CustomerDao extends AbstractDao<Customer> {
 
     @Override
     public void create(Customer customer) {
-        sqLiteOpenHelper = new SQLiteOpenHelperImpl();
+        sqLiteOpenHelper = new SQLiteOpenHelperImpl(this.context);
         sqLiteDatabase = sqLiteOpenHelper.getWritableDatabase();
 
         query =
@@ -37,7 +37,7 @@ public class CustomerDao extends AbstractDao<Customer> {
         List<Customer> customers = new ArrayList<>();
         Customer customer;
 
-        sqLiteOpenHelper = new SQLiteOpenHelperImpl();
+        sqLiteOpenHelper = new SQLiteOpenHelperImpl(this.context);
         sqLiteDatabase = sqLiteOpenHelper.getWritableDatabase();
 
         query =
@@ -79,7 +79,7 @@ public class CustomerDao extends AbstractDao<Customer> {
     public Customer readById(Number id) {
         Customer customer = null;
 
-        sqLiteOpenHelper = new SQLiteOpenHelperImpl();
+        sqLiteOpenHelper = new SQLiteOpenHelperImpl(this.context);
         sqLiteDatabase = sqLiteOpenHelper.getWritableDatabase();
 
         query =
@@ -114,7 +114,7 @@ public class CustomerDao extends AbstractDao<Customer> {
         List<Customer> customers = new ArrayList<>();
         Customer customer;
 
-        sqLiteOpenHelper = new SQLiteOpenHelperImpl();
+        sqLiteOpenHelper = new SQLiteOpenHelperImpl(this.context);
         sqLiteDatabase = sqLiteOpenHelper.getWritableDatabase();
 
         filter = Util.removeAccentMark(filter);
@@ -148,7 +148,7 @@ public class CustomerDao extends AbstractDao<Customer> {
     }
 
     public int getLastCustomerId() {
-        sqLiteOpenHelper = new SQLiteOpenHelperImpl();
+        sqLiteOpenHelper = new SQLiteOpenHelperImpl(this.context);
         sqLiteDatabase = sqLiteOpenHelper.getWritableDatabase();
 
         query =
@@ -172,7 +172,7 @@ public class CustomerDao extends AbstractDao<Customer> {
     }
 
     public int getDebt(int customerId) {
-        sqLiteOpenHelper = new SQLiteOpenHelperImpl();
+        sqLiteOpenHelper = new SQLiteOpenHelperImpl(this.context);
         sqLiteDatabase = sqLiteOpenHelper.getWritableDatabase();
 
         query =
@@ -199,7 +199,7 @@ public class CustomerDao extends AbstractDao<Customer> {
     }
 
     public void updateAddress(long customerId, String newAddress) {
-        sqLiteOpenHelper = new SQLiteOpenHelperImpl();
+        sqLiteOpenHelper = new SQLiteOpenHelperImpl(this.context);
         sqLiteDatabase = sqLiteOpenHelper.getWritableDatabase();
 
         query =
@@ -218,7 +218,7 @@ public class CustomerDao extends AbstractDao<Customer> {
         int amount = getNewBalance(transaction);
         int customerId = transaction.getCustomerId();
 
-        sqLiteOpenHelper = new SQLiteOpenHelperImpl();
+        sqLiteOpenHelper = new SQLiteOpenHelperImpl(this.context);
         sqLiteDatabase = sqLiteOpenHelper.getWritableDatabase();
 
         sqLiteDatabase.execSQL(
