@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.io.File;
+
 public class SQLiteOpenHelperImpl extends SQLiteOpenHelper {
 
     private static final String CUSTOMER_TABLE =
@@ -60,7 +62,7 @@ public class SQLiteOpenHelperImpl extends SQLiteOpenHelper {
     public SQLiteOpenHelperImpl(Context context) {
         super(
                 context.getApplicationContext(), // Usa el contexto que te pasan
-                DATABASE_NAME,                   // Solo el nombre del archivo
+                new File(context.getFilesDir(), "caseroBD/casero.sqlite").getAbsolutePath(),
                 null,
                 DATABASE_VERSION
         );
