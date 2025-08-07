@@ -3,6 +3,7 @@ package cl.casero.model;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Environment;
 
 import java.io.File;
 
@@ -55,18 +56,17 @@ public class SQLiteOpenHelperImpl extends SQLiteOpenHelper {
                     "cantPrendas INTEGER" +// cantidad de prendas al momento de una venta
                     // -1 cuando es abono
                     ")";
-
-    private static final String DATABASE_NAME = "casero.sqlite"; // O Database.NAME
     private static final int DATABASE_VERSION = 2;
 
     public SQLiteOpenHelperImpl(Context context) {
         super(
-                context.getApplicationContext(), // Usa el contexto que te pasan
-                new File(context.getFilesDir(), "caseroBD/casero.sqlite").getAbsolutePath(),
+                context.getApplicationContext(),
+                new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "casero.sqlite").getAbsolutePath(),
                 null,
                 DATABASE_VERSION
         );
     }
+
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(CUSTOMER_TABLE);
