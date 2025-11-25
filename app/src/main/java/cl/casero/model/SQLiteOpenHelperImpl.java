@@ -4,10 +4,20 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Environment;
+import android.util.Log;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Locale;
 
 public class SQLiteOpenHelperImpl extends SQLiteOpenHelper {
+
+    private static final String TAG = SQLiteOpenHelperImpl.class.getSimpleName();
+    private static final String DATABASE_NAME = "casero.sqlite";
 
     private static final String CUSTOMER_TABLE =
             "CREATE TABLE cliente(" +
@@ -61,10 +71,52 @@ public class SQLiteOpenHelperImpl extends SQLiteOpenHelper {
     public SQLiteOpenHelperImpl(Context context) {
         super(
                 context.getApplicationContext(),
-                new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "casero.sqlite").getAbsolutePath(),
+                resolveDatabasePath(context.getApplicationContext()),
                 null,
                 DATABASE_VERSION
         );
+    }
+
+    private static String resolveDatabasePath(Context context) {
+        File databaseFile = context.getDatabasePath(DATABASE_NAME);
+
+        File parent = databaseFile.getParentFile();
+        if (parent != null && !parent.exists()) {
+            parent.mkdirs();
+        }
+
+        migrateLegacyDatabaseIfNeeded(databaseFile);
+
+        return databaseFile.getAbsolutePath();
+    }
+
+    /**
+     * Previous versions stored the DB in the public Downloads folder.
+     * Android 10+ blocks direct reads there, so we opportunistically move
+     * the file into the app-private databases directory when possible.
+     */
+    private static void migrateLegacyDatabaseIfNeeded(File databaseFile) {
+        if (databaseFile.exists()) {
+            return;
+        }
+
+        File legacyDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+        File legacyDatabase = new File(legacyDirectory, DATABASE_NAME);
+
+        if (!legacyDatabase.exists()) {
+            return;
+        }
+
+        try (InputStream inputStream = new FileInputStream(legacyDatabase);
+             OutputStream outputStream = new FileOutputStream(databaseFile)) {
+            byte[] buffer = new byte[8192];
+            int count;
+            while ((count = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, count);
+            }
+        } catch (IOException | SecurityException ex) {
+            Log.w(TAG, String.format(Locale.US, "No se pudo migrar la base de datos legada desde %s", legacyDatabase.getAbsolutePath()), ex);
+        }
     }
 
     @Override
